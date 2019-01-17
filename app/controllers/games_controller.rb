@@ -5,7 +5,7 @@ class GamesController < ApplicationController
   # GET /games
   # GET /games.json
   def index
-    @games = Game.includes(:winner, :loser).all
+    @games = Game.includes(:winner, :loser).order('created_at desc')
   end
 
   # GET /games/1
@@ -21,6 +21,7 @@ class GamesController < ApplicationController
 
   # GET /games/1/edit
   def edit
+    @candidates = User.where.not(id: current_user.id).all
   end
 
   # POST /games
@@ -48,6 +49,7 @@ class GamesController < ApplicationController
         format.html { redirect_to @game, notice: 'Game was successfully updated.' }
         format.json { render :show, status: :ok, location: @game }
       else
+        @candidates = User.where.not(id: current_user.id).all
         format.html { render :edit }
         format.json { render json: @game.errors, status: :unprocessable_entity }
       end

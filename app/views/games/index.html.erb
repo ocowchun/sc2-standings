@@ -5,6 +5,7 @@
 <table>
   <thead>
     <tr>
+      <th>Created At</th>
       <th>Winner</th>
       <th>Loser</th>
       <th>Winner race</th>
@@ -17,10 +18,11 @@
   <tbody>
     <% @games.each do |game| %>
       <tr>
+        <td><%= game.created_at.in_time_zone("Taipei") %></td>
         <td><%= game.winner.email %></td>
         <td><%= game.loser.email %></td>
-        <td><%= game.winner_race %></td>
-        <td><%= game.loser_race %></td>
+        <td><%= game.winner_race.titleize %></td>
+        <td><%= game.loser_race.titleize %></td>
         <td><%= game.note %></td>
         <td><%= link_to 'Show', game %></td>
         <td><%= link_to 'Edit', edit_game_path(game) %></td>

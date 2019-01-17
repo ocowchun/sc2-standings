@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Sc2Standings</title>
+    <title>Sc2 Standings</title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -13,7 +13,7 @@
       Hello, <%= current_user.email%>
     <% end %>
 
-    <p>Hello </p>
+    <h1><%= link_to "SC2 Standings", root_path %></h1>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
     <%= yield %>
