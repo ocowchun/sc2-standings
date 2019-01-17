@@ -13,6 +13,7 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 gem 'devise'
 gem 'pg'
+gem 'rollbar'
 
 group :development, :test do
   gem 'selenium-webdriver'
