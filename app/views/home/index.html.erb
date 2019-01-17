@@ -2,5 +2,6 @@
   <p>Please <%= link_to "Sign In", new_user_session_path %>/<%= link_to "Sign Up", new_user_registration_path %> before do anything</p>
 <% else %>
 <%= link_to "Create Game Record", new_game_path %>
+<%= link_to "See Standings", games_path %>
 <% end %>
 
