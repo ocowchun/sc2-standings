@@ -1,8 +1,10 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Games</h1>
-<%= link_to 'New Game', new_game_path %>
+<%= image_tag(@user.gravatar_profile_image) %>
+<p>User: <%= @user.email %> </p>
 <hr>
+
+<h3>Game records</h3>
 <table>
   <thead>
     <tr>
@@ -20,8 +22,8 @@
     <% @games.each do |game| %>
       <tr>
         <td><%= game.created_at.in_time_zone("Taipei") %></td>
-        <td><%= link_to game.winner.email, user_path(game.winner) %></td>
-        <td><%= link_to game.loser.email, user_path(game.loser) %></td>
+        <td><%= game.winner.email %></td>
+        <td><%= game.loser.email %></td>
         <td><%= game.winner_race.titleize %></td>
         <td><%= game.loser_race.titleize %></td>
         <td><%= game.note %></td>

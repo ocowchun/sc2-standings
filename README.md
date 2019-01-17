@@ -1,24 +1,9 @@
-# README
+# sc2-standings
+> An application to show [StarCraft II](https://starcraft2.com/) for amateur.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## TODO
+- [ ] show user stats
+- [ ] add username
+- [ ] add user battle.net account
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+MIT
