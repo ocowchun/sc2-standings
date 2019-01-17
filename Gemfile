@@ -13,6 +13,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 gem 'devise'
+gem 'pg'
 
 group :development, :test do
   gem 'selenium-webdriver'
@@ -25,7 +26,6 @@ group :development, :test do
   gem 'bundler-audit'
   gem 'foreman'
   gem 'factory_bot_rails'
-  gem 'dotenv-rails'
 end
 
 group :development do
