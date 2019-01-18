@@ -4,5 +4,6 @@ Rails.application.routes.draw do
     sessions: 'users/sessions'
   }
   resources :users, only: [:show]
+  get 'standings' => 'home#standings'
   root to: "home#index"
 end

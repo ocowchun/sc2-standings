@@ -1,0 +1,23 @@
+<h2>MIS League 2019</h2>
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Win</th>
+      <th>Lose</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @sorted_users.each do |user| %>
+      <tr>
+        <td>
+          <%= image_tag(user.gravatar_profile_image(50))%>
+          <%= link_to user.email, user_path(user) %>
+        </td>
+        <td><%= @stats_map[user.id][:win] %></td>
+        <td><%= @stats_map[user.id][:lose] %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

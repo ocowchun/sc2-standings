@@ -3,8 +3,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :confirmable, :lockable, :trackable
 
-  def gravatar_profile_image
+  def gravatar_profile_image(size=200)
     hex = Digest::MD5.hexdigest(email)
-    "https://www.gravatar.com/avatar/#{hex}?d=mm&s=200"
+    "https://www.gravatar.com/avatar/#{hex}?d=mm&s=#{size}"
   end
 end
