@@ -10,6 +10,11 @@ class HomeController < ApplicationController
       memo[game.loser_id][:lose] += 1
       memo
     end
-    @sorted_users = users.sort_by { |u| @stats_map[u.id][:win] * -1 }
+
+    @sorted_users = users.sort_by do |u|
+      win = @stats_map[u.id][:win] * -1
+      lose = @stats_map[u.id][:win] * 1
+      [win, lose]
+    end
   end
 end
