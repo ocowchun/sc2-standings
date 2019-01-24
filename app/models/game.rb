@@ -12,4 +12,14 @@ class Game < ApplicationRecord
 
   validates_inclusion_of :winner_race, in: KNOWN_RACES
   validates_inclusion_of :loser_race, in: KNOWN_RACES
+
+  validate :validate_same_user
+
+  private
+
+  def validate_same_user
+    if winner_id.to_s == loser_id.to_s
+      errors.add(:loser_id, "loser should be different with winner")
+    end
+  end
 end

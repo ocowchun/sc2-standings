@@ -1,0 +1,63 @@
+<h1>New Game Set</h1>
+<h2>Only winner need to record the games</h2>
+
+<%= form_tag series_game_sets_path(@series, @game_set) do%>
+  <% if @game_set.errors.any? || @error_message.present? %>
+    <div id="error_explanation">
+      <ul>
+      <% @game_set.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      <% if @error_message.present? %>
+        <li><%= @error_message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="field">
+    <%= label_tag :note %>
+    <%= text_area_tag :note %>
+  </div>
+
+  <% @games.each_with_index do |game, idx| %>
+  <h3> Game <%= idx+1%></h3>
+  <div>
+    <% if game.errors.any? %>
+      <div id="error_explanation">
+        <ul>
+        <% game.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+
+    <div class="field">
+      <%= label_tag "winner_id" %>
+      <%= select_tag "games[winner_id][]",  options_from_collection_for_select(@candidates, "id", "email", game.winner_id), include_blank: true %>
+    </div>
+
+    <div class="field">
+      <%= label_tag "loser_id" %>
+      <%= select_tag "games[loser_id][]",  options_from_collection_for_select(@candidates, "id", "email", game.loser_id), include_blank: true %>
+    </div>
+
+    <div class="field">
+      <%= label_tag "winner_race" %>
+      <%= select_tag "games[winner_race][]",  options_from_collection_for_select(Game::KNOWN_RACES, "to_s", "titleize", game.winner_race), include_blank: true %>
+    </div>
+
+    <div class="field">
+      <%= label_tag "loser_race" %>
+      <%= select_tag "games[loser_race][]",  options_from_collection_for_select(Game::KNOWN_RACES, "to_s", "titleize", game.loser_race), include_blank: true %>
+    </div>
+  </div>
+  <hr>
+  <% end %>
+
+<%= submit_tag "Submit GameSet" %>
+<% end %>
+
+
+<%= link_to 'Back', games_path %>
