@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe Game, type: :model do
   it { should belong_to(:winner) }
   it { should belong_to(:loser) }
+  it { should belong_to(:game_set) }
   it { should validate_presence_of(:winner_id) }
   it { should validate_presence_of(:loser_id) }
   it { should validate_presence_of(:winner_race) }

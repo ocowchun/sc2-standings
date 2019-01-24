@@ -10,10 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190117124048) do
+ActiveRecord::Schema.define(version: 20190124121130) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "game_sets", force: :cascade do |t|
+    t.integer "series_id", null: false
+    t.integer "winner_id", null: false
+    t.integer "loser_id", null: false
+    t.text "note"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["loser_id"], name: "index_game_sets_on_loser_id"
+    t.index ["series_id"], name: "index_game_sets_on_series_id"
+    t.index ["winner_id"], name: "index_game_sets_on_winner_id"
+  end
 
   create_table "games", force: :cascade do |t|
     t.integer "winner_id", null: false
@@ -23,8 +35,15 @@ ActiveRecord::Schema.define(version: 20190117124048) do
     t.string "loser_race", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "game_set_id"
     t.index ["loser_id"], name: "index_games_on_loser_id"
     t.index ["winner_id"], name: "index_games_on_winner_id"
+  end
+
+  create_table "series", force: :cascade do |t|
+    t.string "name", default: "", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -53,4 +72,10 @@ ActiveRecord::Schema.define(version: 20190117124048) do
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
   end
 
+  add_foreign_key "game_sets", "series", on_delete: :cascade
+  add_foreign_key "game_sets", "users", column: "loser_id", on_delete: :cascade
+  add_foreign_key "game_sets", "users", column: "winner_id", on_delete: :cascade
+  add_foreign_key "games", "game_sets", on_delete: :cascade
+  add_foreign_key "games", "users", column: "loser_id", on_delete: :cascade
+  add_foreign_key "games", "users", column: "winner_id", on_delete: :cascade
 end

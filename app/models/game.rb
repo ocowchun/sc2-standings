@@ -2,6 +2,7 @@ class Game < ApplicationRecord
   KNOWN_RACES = ['protoss', 'terran', 'zerg', 'random']
   belongs_to :winner, class_name: "User"
   belongs_to :loser, class_name: "User"
+  belongs_to :game_set
 
   validates_presence_of :winner_id
   validates_presence_of :loser_id
