@@ -1,8 +1,19 @@
 <% if current_user.nil?%>
   <p>Please <%= link_to "Sign In", new_user_session_path %>/<%= link_to "Sign Up", new_user_registration_path %> before do anything</p>
 <% else %>
-<%= link_to "Create Game Record", new_game_path %>
-<%= link_to "See Standings", standings_path %>
-<%= link_to "See Scores", games_path %>
+<div>
+  <h2>Try the new feature Game Set!</h2>
+  <%= link_to "Create Game Set", new_series_game_set_path(1) %>
+  <%= link_to "See Series Standings", series_path(1) %>
+  <%= link_to "See Scores", games_path %>
+</div>
+
+<div>
+  <h3>You can still record your game using old ways</h3>
+  <%= link_to "Create Game Record", new_game_path %>
+  <%= link_to "See Overall Standings", standings_path %>
+</div>
+
+
 <% end %>
 
