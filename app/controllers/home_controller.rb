@@ -3,18 +3,8 @@ class HomeController < ApplicationController
   end
 
   def standings
-    users = User.all
-    @stats_map = users.map { |u| [u.id, { win: 0, lose: 0 }] }.to_h
-    Game.includes(:winner, :loser).all.reduce(@stats_map) do |memo, game|
-      memo[game.winner_id][:win] += 1
-      memo[game.loser_id][:lose] += 1
-      memo
-    end
-
-    @sorted_users = users.sort_by do |u|
-      win = @stats_map[u.id][:win] * -1
-      lose = @stats_map[u.id][:win] * 1
-      [win, lose]
-    end
+    res = GameService::QueryOverAllStats.new.perform
+    @sorted_users = res[:sorted_users]
+    @stats_map = res[:stats_map]
   end
 end
